@@ -6,12 +6,14 @@ It is a mobile application that shows the most popular news of the New York Time
 **New York Times API**
 
 https://developer.nytimes.com/docs/most-popular-product/1/overview
+
 - You can register and access the key.
 
 
 ## Video
 
-https://github.com/fatihhcan/media-probe-mobile-app/assets/45641833/25fc845f-54b2-4184-a1ef-20524caf3d69
+https://github.com/fatihhcan/media-probe-mobile-app/assets/45641833/9fcf12ae-0ef3-4709-beb0-2f365d4c61f6
+
 
 # Subject
 
