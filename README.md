@@ -21,6 +21,8 @@ https://github.com/fatihhcan/media-probe-mobile-app/assets/45641833/9fcf12ae-0ef
 - Http was used for API requests.
 - Intl was used for the date format.
 - Google Fonts was used for the fonts.
+- MVC+S design pattern was used.
+- Unit and UI tests were created.
 
 # Tasks 📋
 API call. 
@@ -205,6 +207,10 @@ void main() async{
 }
 
 ```
+
+https://github.com/fatihhcan/media-probe-mobile-app/assets/45641833/4e8964cc-b686-4e07-a07c-0932fe73fabd
+
+
   # Folder Structure
 
 ```
