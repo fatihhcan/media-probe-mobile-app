@@ -11,6 +11,8 @@ https://developer.nytimes.com/docs/most-popular-product/1/overview
 
 ## Video
 
+https://github.com/fatihhcan/media-probe-mobile-app/assets/45641833/25fc845f-54b2-4184-a1ef-20524caf3d69
+
 # Subject
 
 - Provider, a wrapper around InheritedWidget to make them easier to use and more reusable.
