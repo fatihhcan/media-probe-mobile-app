@@ -163,7 +163,48 @@ class NavigationRoute {
   }
 }
   ```
+Unit Test:
+**unit_test.dart**
+```dart
+void main() async{
+  Services services = Services();
+  await dotenv.load(fileName: ".env");
+  test("Fetch API", () async {
+    bool done = false;
+    var fetch = (await services.getData());
+    if (fetch != null) {
+      done = true;
+    }
+    expect(done, true);
+  });
+}
+```
 
+UI Test:
+**widget_test.dart**
+```dart
+void main() async{
+  testWidgets('read more button', (WidgetTester tester) async {
+
+    final readMoreButton = find.byKey(const ValueKey("readMore"));
+    Provider.debugCheckInvalidValueType = null;
+
+    await tester.pumpWidget(
+      Provider<DataProvider>.value(
+        value: DataProvider(),
+        child: MyApp(),
+      ),
+    );
+
+    await tester.enterText(readMoreButton, "Detail page next");
+    await tester.tap(readMoreButton);
+    await tester.pump(const Duration(seconds: 2));
+
+    expect(find.text("Detail page next"), findsOneWidget);
+  });
+}
+
+```
   # Folder Structure
 
 ```

@@ -6,25 +6,35 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:media_probe_mobile_app/core/providers/data_provider.dart';
+import 'package:media_probe_mobile_app/core/services/data_service.dart';
 
 import 'package:media_probe_mobile_app/main.dart';
+import 'package:provider/provider.dart';
 
-void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget( MyApp());
+void main() async{
+   Services services = Services();
+   await dotenv.load(fileName: ".env");
+   await services.getData();
+    
+  testWidgets('read more button', (WidgetTester tester) async {
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    final readMoreButton = find.byKey(const ValueKey("readMore"));
+    Provider.debugCheckInvalidValueType = null;
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    await tester.pumpWidget(
+      Provider<DataProvider>.value(
+        value: DataProvider(),
+        child: MyApp(),
+      ),
+    );
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    await tester.enterText(readMoreButton, "Detail page next");
+    await tester.tap(readMoreButton);
+    await tester.pump(const Duration(seconds: 2));
+
+    expect(find.text("Detail page next"), findsOneWidget);
   });
 }

@@ -7,7 +7,7 @@ import 'package:media_probe_mobile_app/core/constants/app/app_constant.dart';
 import '../models/data_model.dart';
 
 class Services {
-  Future<List<DataModel>> getData(context) async {
+  Future<List<DataModel>> getData() async {
     late List<DataModel> data;
     const baseUrl = AppConstants.BASE_URL;
     final apiKey = dotenv.env["API_KEY"];

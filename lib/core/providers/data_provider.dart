@@ -11,9 +11,9 @@ class DataProvider with ChangeNotifier {
   bool loading = false;
   Services services = Services();
 
-  getData(context) async {
+  getData() async {
     loading = true;
-    data = await services.getData(context);
+    data = await services.getData();
     loading = false;
     notifyListeners();
   }
@@ -42,7 +42,7 @@ class DataProvider with ChangeNotifier {
   }
 
   String isCheckCaption(int index) {
-    if (data[index].media[0].caption.isEmpty ||data[index].media[0].caption == "") {
+    if (data[index].media.isEmpty ||data[index].media[0].caption == "") {
       return TextConstant.captionNotFound;
     }
 
