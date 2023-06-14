@@ -51,6 +51,7 @@ class NewsCard extends StatelessWidget {
           ),
           context.sizedBoxLowVertical,
           GestureDetector(
+            key: Key("readMore"),
             onTap: onTap,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
