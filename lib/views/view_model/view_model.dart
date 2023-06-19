@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:media_probe_mobile_app/core/constants/app/app_constant.dart';
 import 'package:media_probe_mobile_app/core/constants/text/text_constant.dart';
-import '../models/data_model.dart';
-import '../services/data_service.dart';
+import '../model/data_model.dart';
+import '../model/services/data_service.dart';
 
-class DataProvider with ChangeNotifier {
+class ViewModel with ChangeNotifier {
   late List<DataModel> data;
 
   bool loading = false;
@@ -41,11 +41,11 @@ class DataProvider with ChangeNotifier {
     return data[index].media[0].mediaMetadata[2].url;
   }
 
-  String isCheckCaption(int index) {
-    if (data[index].media.isEmpty ||data[index].media[0].caption == "") {
+  String isCheckAbstract(int index) {
+    if (data[index].dataModelAbstract.isEmpty ||data[index].dataModelAbstract == "") {
       return TextConstant.captionNotFound;
     }
 
-    return data[index].media[0].caption;
+    return data[index].dataModelAbstract;
   }
 }

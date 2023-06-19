@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:media_probe_mobile_app/core/utility/arguments_detail.dart';
-import 'package:media_probe_mobile_app/views/detail/detai_view.dart';
-import 'package:media_probe_mobile_app/views/home/home_view.dart';
+import 'package:media_probe_mobile_app/views/view/detail/detai_view.dart';
+import 'package:media_probe_mobile_app/views/view/home/home_view.dart';
 
 import '../constants/routes/navigation_constant.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:media_probe_mobile_app/core/services/data_service.dart';
+import 'package:media_probe_mobile_app/views/model/services/data_service.dart';
 
 void main() async{
   Services services = Services();
