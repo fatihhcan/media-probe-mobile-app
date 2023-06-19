@@ -21,18 +21,20 @@ https://github.com/fatihhcan/media-probe-mobile-app/assets/45641833/9fcf12ae-0ef
 - Http was used for API requests.
 - Intl was used for the date format.
 - Google Fonts was used for the fonts.
-- MVC+S design pattern was used.
+- MVVM design pattern was used.
 - Unit and UI tests were created.
 
 # Tasks 📋
 API call. 
 **data_services.dart**
 ```dart
- Future<List<DataModel>> getData(context) async {
+class Services extends BaseService {
+  @override
+  Future<List<DataModel>> getData() async {
     late List<DataModel> data;
     const baseUrl = AppConstants.BASE_URL;
     final apiKey = dotenv.env["API_KEY"];
-   
+
     try {
       final response = await http.get(
         Uri.parse('${baseUrl}api-key=$apiKey'),
@@ -49,17 +51,38 @@ API call.
     }
     return data;
   }
+
+  @visibleForTesting
+  dynamic returnResponse(http.Response response) {
+    switch (response.statusCode) {
+      case 200:
+        dynamic responseJson = jsonDecode(response.body);
+        return responseJson;
+      case 400:
+        throw BadRequestException(response.body.toString());
+      case 401:
+      case 403:
+        throw UnauthorisedException(response.body.toString());
+      case 500:
+      default:
+        throw FetchDataException(
+            'Error occured while communication with server' +
+                ' with status code : ${response.statusCode}');
+    }
+  }
+}
+
 ```
 
 
 **home_view.dart**
 News card.
 ```dart
-  ListView.separated(
+ ListView.separated(
                   itemBuilder: ((context, index) {
                     return NewsCard( 
                     title:  postMdl.sortNews()[index].title, 
-                    caption: postMdl.isCheckCaption(index),
+                    abstractData: postMdl.isCheckAbstract(index),
                     publishedDate: postMdl.getDateFormat(index ,postMdl.data[index].publishedDate), 
                     imageURL: postMdl.isCheckMedia(index),
                     onTap: () => {
@@ -68,7 +91,7 @@ News card.
                         imageUrl: postMdl.isCheckMedia(index),
                         title: postMdl.sortNews()[index].title, 
                         text: postMdl.sortNews()[index].dataModelAbstract, 
-                        publishedDate: postMdl.getDateFormat(index ,postMdl.data[index].publishedDate), 
+                        publishedDate: postMdl.getDateFormat(index ,postMdl.sortNews()[index].publishedDate), 
                       )
                       )
                     },
@@ -81,7 +104,7 @@ News card.
 ```
 
 Sorting of news by date. Create functions in the provider to ensure that the dates and contents are included in the correct cards.
-**data_provider.dart**
+**view_model.dart**
 
 ```dart
   String getDateFormat(int index, DateTime publishedDate) {
