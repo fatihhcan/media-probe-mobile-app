@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:media_probe_mobile_app/core/extensions/context_extensions.dart';
 
-import '../../core/constants/text/text_constant.dart';
+import '../../../core/constants/text/text_constant.dart';
 
 
 class DetailView extends StatelessWidget {

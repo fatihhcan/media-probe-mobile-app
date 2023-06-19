@@ -8,8 +8,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:media_probe_mobile_app/core/providers/data_provider.dart';
-import 'package:media_probe_mobile_app/core/services/data_service.dart';
+import 'package:media_probe_mobile_app/views/view_model/view_model.dart';
+import 'package:media_probe_mobile_app/views/model/services/data_service.dart';
 
 import 'package:media_probe_mobile_app/main.dart';
 import 'package:provider/provider.dart';
@@ -25,8 +25,8 @@ void main() async{
     Provider.debugCheckInvalidValueType = null;
 
     await tester.pumpWidget(
-      Provider<DataProvider>.value(
-        value: DataProvider(),
+      Provider<ViewModel>.value(
+        value: ViewModel(),
         child: MyApp(),
       ),
     );

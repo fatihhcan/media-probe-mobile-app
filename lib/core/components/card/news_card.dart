@@ -4,7 +4,7 @@ import 'package:media_probe_mobile_app/core/extensions/context_extensions.dart';
 
 class NewsCard extends StatelessWidget {
   final String title;
-  final String caption;
+  final String abstractData;
   final String publishedDate;
   final String imageURL;
   final void Function()? onTap;
@@ -12,7 +12,7 @@ class NewsCard extends StatelessWidget {
   const NewsCard(
       {super.key,
       required this.title,
-      required this.caption,
+      required this.abstractData,
       required this.publishedDate,
       required this.imageURL,
       required this.onTap
@@ -45,13 +45,13 @@ class NewsCard extends StatelessWidget {
           context.sizedBoxLowVertical,
 
           Text(
-            caption,
+            abstractData,
             textAlign: TextAlign.center,
             style: context.textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w400),
           ),
           context.sizedBoxLowVertical,
           GestureDetector(
-            key: Key("readMore"),
+            key: const Key("readMore"),
             onTap: onTap,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
